@@ -13,6 +13,7 @@ class VehicleController extends Controller
     public function calculateVehiclePrice(Request $request)
     {
         try {
+            // TODO: apply OOP to the project and SOLID and/or CLEAN CODE //
             $basePriceOfTheVehicle = $request->input('price');
             $typeOfTheVehicle = strtolower($request->input('type'));
 

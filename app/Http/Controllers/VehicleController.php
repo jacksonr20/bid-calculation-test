@@ -10,13 +10,10 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
-    public function index()
-    {
-    }
-
     public function calculateVehiclePrice(Request $request)
     {
         try {
+            // TODO: apply OOP to the project and SOLID and/or CLEAN CODE //
             $basePriceOfTheVehicle = $request->input('price');
             $typeOfTheVehicle = strtolower($request->input('type'));
 
@@ -26,11 +23,11 @@ class VehicleController extends Controller
                 var_dump("Type: " . $fee->type . ", Amount: " . $fee->amount);
             }
 
-            $basicUserFee = ($typeOfTheVehicle == VehicleType::common)
+            $basicUserFee = ($typeOfTheVehicle == VehicleType::Common->value)
                 ? min(max(0.1 * $basePriceOfTheVehicle, 10), 50)
                 : min(max(0.1 * $basePriceOfTheVehicle, 25), 200);
 
-            $sellerFee = ($typeOfTheVehicle == VehicleType::common)
+            $sellerFee = ($typeOfTheVehicle == VehicleType::Common->value)
                 ? 0.02 * $basePriceOfTheVehicle
                 : 0.04 * $basePriceOfTheVehicle;
 

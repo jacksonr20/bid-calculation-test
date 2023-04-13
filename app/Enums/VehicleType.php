@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum VehicleType: string
 {
-  case common = 'common';
-  case luxury = 'luxury';
+  case Common = 'common';
+  case Luxury = 'luxury';
 }

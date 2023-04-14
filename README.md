@@ -21,7 +21,7 @@ What things you need to install the software and how to install them.
 
 ### Important
 
-- Make sure to have "curl", "fileinfo", "mbstring", "openssl" and "pdo_mysql" PHP extensions installed or had removed the " ; " from the beginning of these extensions in php.ini file located where you installed your PHP. Without this, the laravel installation with composer will fail.
+- Make sure to have "curl", "fileinfo", "mbstring", "openssl" and optionally, "pdo_mysql" PHP extensions installed or had removed the " ; " from the beginning of these extensions in php.ini file located where you installed your PHP. Without this, the laravel installation with composer will fail.
 
 ## Setup
 
@@ -34,9 +34,9 @@ $ git clone git@github.com:jacksonr20/bid-calculation-test.git
 
 $ cd bid-calculation-test/
 
-$ composer require
+$ composer install
 
-$ cp .env.example .env # Set the same MySQL variables as your system.
+$ cp .env.example .env
 
 #If it is not automatically generated
 $ php artisan key:generate
@@ -58,8 +58,14 @@ $ php artisan serve
 - `http://127.0.0.1:8000/api/calculate-vehicle-price` if you did not changed the default PORT in the environment variables of the .env.
 
 - Now, in Postman or related go to _Body_ and select `'raw'` or `'form-data'`. Here you should enter the required information of the test:
-- 1. There is a field to enter the vehicle base price (a number)
-- 2. There is a field to specify the vehicle type (Common or Luxury)
+- 1. There is a field to enter the vehicle base price (a number).
+- 2. There is a field to specify the vehicle type (Common or Luxury).
+
+## Swagger
+
+![Swagger](./docs/swagger.png)
+
+To access to this swagger, you must open in a new tab a url that will look like this: <br> `<your_server>:<your_port>/api/` or [open this link for localhost](http://localhost:8000/api/documentation) if you have the 8000 port by default.
 
 ## Test
 

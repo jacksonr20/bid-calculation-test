@@ -1,0 +1,96 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Vehicle Price Calculator App",
+        "description": "API documentation for Vehicle Price Calculator App Test",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/calculate-vehicle-price": {
+            "post": {
+                "tags": [
+                    "Vehicle Price"
+                ],
+                "summary": "Calculate the total vehicle price",
+                "description": "",
+                "operationId": "calculateVehicle price",
+                "requestBody": {
+                    "description": "Vehicle data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "10000.00"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "common"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Vehicle price calculated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": "10000.00"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "common"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "price": [
+                                                    "The price field is required.",
+                                                    "The price must be a number.",
+                                                    "The price must be greater than 1."
+                                                ],
+                                                "type": [
+                                                    "The type field is required.",
+                                                    "The selected type is invalid. Must be of type: common or luxury",
+                                                    "The selected type must be in lowercase"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

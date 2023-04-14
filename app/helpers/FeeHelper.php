@@ -8,16 +8,13 @@ class FeeHelper
 {
   public static function calculateBasicFee(float $vehicleBasePrice, string $vehicleType): float
   {
-    $commonType = VehicleType::Common->value;
-    $luxuryType = VehicleType::Luxury->value;
+    $basicFee = min(max(0.1 * $vehicleBasePrice, config('fees.common.min')), config('fees.common.max'));
 
-    if ($vehicleType === $commonType) {
-      return min(max(0.1 * $vehicleBasePrice, config('fees.common.min')), config('fees.common.max'));
-    } elseif ($vehicleType === $luxuryType) {
-      return min(max(0.1 * $vehicleBasePrice, config('fees.luxury.min')), config('fees.luxury.max'));
+    if ($vehicleType === VehicleType::Luxury->value) {
+      $basicFee =  min(max(0.1 * $vehicleBasePrice, config('fees.luxury.min')), config('fees.luxury.max'));
     }
 
-    throw new \InvalidArgumentException('Invalid vehicle type');
+    return $basicFee;
   }
 
   public static function calculateSpecialFee(float $vehicleBasePrice, string $vehicleType): float

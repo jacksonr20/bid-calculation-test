@@ -8,7 +8,12 @@ use Illuminate\Validation\Rules\Enum;
 
 class CalculateFeeRequest extends FormRequest
 {
-    public function rules()
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
     {
         return [
             'type' => ['required', 'string', 'lowercase', new Enum(VehicleType::class)],
@@ -16,7 +21,7 @@ class CalculateFeeRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'type.required' => 'The vehicle type field is required.',

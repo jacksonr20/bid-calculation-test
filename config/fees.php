@@ -4,12 +4,12 @@ return [
     'common' => [
         'min' => env('MIN_BASIC_FEE', 10),
         'max' => env('MAX_BASIC_FEE', 50),
-        'special_percentage' => env('COMMON_SPECIAL_PERCENTAGE', 0.02),
+        'percentage' => env('COMMON_SPECIAL_PERCENTAGE', 0.02),
     ],
     'luxury' => [
         'min' => env('MIN_LUXURY_FEE', 25),
         'max' => env('MAX_LUXURY_FEE', 200),
-        'special_percentage' => env('LUXURY_SPECIAL_PERCENTAGE', 0.04),
+        'percentage' => env('LUXURY_SPECIAL_PERCENTAGE', 0.04),
     ],
 
     'associationFeeRanges' => [

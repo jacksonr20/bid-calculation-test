@@ -22,7 +22,7 @@ class FeeHelper
 
   public static function calculateSpecialFee(float $vehicleBasePrice, string $vehicleType): float
   {
-    $fee = $vehicleType === VehicleType::Common->value ? config('fees.common.special_percentage') : config('fees.luxury.special_percentage');
+    $fee = $vehicleType === VehicleType::Common->value ? config('fees.common.percentage') : config('fees.luxury.percentage');
 
     return $fee * $vehicleBasePrice;
   }

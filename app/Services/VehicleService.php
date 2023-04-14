@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Helpers\FeeHelper;
-use App\Enums\FeeType;
+use App\Services\FeeService;
 use App\Http\Requests\CalculateFeeRequest;
 
 class VehicleService
@@ -12,23 +12,20 @@ class VehicleService
   {
     $vehicleBasePrice = $request['price'];
     $vehicleType = strtolower($request['type']);
-    $feeType = FeeType::cases();
 
     $basicFee = FeeHelper::calculateBasicFee($vehicleBasePrice, $vehicleType);
-    $sellerFee = FeeHelper::calculateSellerFee($vehicleBasePrice, $vehicleType);
+    $specialFee = FeeHelper::calculateSpecialFee($vehicleBasePrice, $vehicleType);
     $associationFee = FeeHelper::calculateAssociationFee($vehicleBasePrice);
     $storageFee = FeeHelper::calculateStorageFee();
 
-    $totalCost = $vehicleBasePrice + $basicFee + $sellerFee + $associationFee + $storageFee;
+    $totalCost = $vehicleBasePrice + $basicFee + $specialFee + $associationFee + $storageFee;
+
+    $fees = FeeService::generateFees($basicFee, $specialFee, $associationFee, $storageFee);
 
     return response()->json([
-      'fees' => [
-        [
-          "type" => $feeType,
-          "amount" => $sellerFee, $associationFee, $storageFee,
-          "totalCost" => $totalCost,
-        ],
-      ],
+      'fees' => $fees,
+      'vehicle_price' => $vehicleBasePrice,
+      'total_price' => $totalCost,
     ]);
   }
 }

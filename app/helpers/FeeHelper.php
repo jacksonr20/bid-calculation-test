@@ -20,9 +20,9 @@ class FeeHelper
     throw new \InvalidArgumentException('Invalid vehicle type');
   }
 
-  public static function calculateSellerFee(float $vehicleBasePrice, string $vehicleType): float
+  public static function calculateSpecialFee(float $vehicleBasePrice, string $vehicleType): float
   {
-    $fee = $vehicleType === VehicleType::Common->value ? config('fees.common.seller_percentage') : config('fees.luxury.seller_percentage');
+    $fee = $vehicleType === VehicleType::Common->value ? config('fees.common.special_percentage') : config('fees.luxury.special_percentage');
 
     return $fee * $vehicleBasePrice;
   }

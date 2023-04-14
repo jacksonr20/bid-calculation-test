@@ -1,67 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Vehicle Price Calculator App
 
-## About Laravel
+## Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This is an application that will allow a buyer to calculate the total price of a vehicle at a car auction, with their fees respectively.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This app was built in: [Laravel](https://github.com/laravel/laravel) framework
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Getting Started
 
-## Learning Laravel
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### \* Requirements
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+What things you need to install the software and how to install them.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- [PHP](https://www.php.net/downloads) >= 8.1
+- [Composer](https://getcomposer.org/download/) >= 2.5.5
 
-## Laravel Sponsors
+### Important
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Make sure to have "curl", "fileinfo", "mbstring", "openssl" and "pdo_mysql" PHP extensions installed or had removed the " ; " from the beginning of these extensions in php.ini file located where you installed your PHP. Without this, the laravel installation with composer will fail.
 
-### Premium Partners
+## Setup
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### Clone this project in SSH or method of preference.
 
-## Contributing
+```bash
+# For example, with the Terminal in a directory of preference:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+$ git clone git@github.com:jacksonr20/bid-calculation-test.git
 
-## Code of Conduct
+$ cd bid-calculation-test/
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+$ composer require
 
-## Security Vulnerabilities
+$ cp .env.example .env # Set the same MySQL variables as your system.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#If it is not automatically generated
+$ php artisan key:generate
+```
+
+## Running the app: Local environment
+
+```bash
+# development
+$ php artisan serve
+```
+
+## How it works
+
+- You must have installed Postman, ThunderClient or related program to make the HTTP Requests respectively.
+
+- To make a request select the _POST_ method, then, put the same URL that appears once you run the server with: `$ php artisan serve`. And in the _routes/api.php_ of the project, you will notice that the url path to request is the `'/calculate-vehicle-price'`. It normally look like this:
+
+- `http://127.0.0.1:8000/api/calculate-vehicle-price` if you did not changed the default PORT in the environment variables of the .env.
+
+- Now, in Postman or related go to _Body_ and select `'raw'` or `'form-data'`. Here you should enter the required information of the test:
+- 1. There is a field to enter the vehicle base price (a number)
+- 2. There is a field to specify the vehicle type (Common or Luxury)
+
+## Test
+
+```bash
+# unit tests
+$ php artisan test
+
+# feature test
+$ php artisan test --calculateVehicleTotalPriceTest=Feature --stop-on-failure
+```
+
+## Support
+
+- Author - [Jackson Rodriguez](https://github.com/jacksonr20)
+- Gmail - [jackson.rodriguezf@gmail.com](mailto:jackson.rodriguezf@gmail.com)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# bid-calculation-test
+Vehicle Price Calculator App is [MIT licensed](https://opensource.org/license/mit/).

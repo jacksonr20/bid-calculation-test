@@ -21,7 +21,7 @@ What things you need to install the software and how to install them.
 
 ### Important
 
-- Make sure to have "curl", "fileinfo", "mbstring", "openssl" and optionally, "pdo_mysql" PHP extensions installed or had removed the " ; " from the beginning of these extensions in php.ini file located where you installed your PHP. Without this, the laravel installation with composer will fail.
+- Make sure to have "curl", "fileinfo", "mbstring", "openssl" PHP extensions installed or had removed the " ; " from the beginning of these extensions in php.ini file located where you installed your PHP if your using Windows. Without this, the laravel installation with composer will fail.
 
 ## Setup
 
@@ -37,6 +37,8 @@ $ cd bid-calculation-test/
 $ composer install
 
 $ cp .env.example .env
+
+* Please, copy the environment variables of the .env.example to the new .env. This should be set from line 66 to 76.
 
 #If it is not automatically generated
 $ php artisan key:generate
@@ -74,7 +76,7 @@ To access to this swagger, you must open in a new tab a url that will look like 
 $ php artisan test
 
 # feature test
-$ php artisan test --calculateVehicleTotalPriceTest=Feature --stop-on-failure
+$ php artisan test --filter CalculationTest  --stop-on-failure
 ```
 
 ## Support
